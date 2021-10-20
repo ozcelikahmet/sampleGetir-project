@@ -14,3 +14,10 @@ formatter.background({
   "description": "",
   "keyword": "Background"
 });
+formatter.before({
+  "status": "passed"
+});
+formatter.step({
+  "name": "user taps on \"SKIP\"",
+  "keyword": "Given "
+});
