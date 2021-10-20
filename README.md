@@ -19,3 +19,5 @@ Notes:
 4. platformName=android -> It is android emulator platform name.
 
 - "bug-reports" file stores details for the bugs.
+
+- Target -> cucumber-reports contains "index.html". You can review the test report from there.
