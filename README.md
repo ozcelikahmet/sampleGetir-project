@@ -17,3 +17,5 @@ Notes:
 2. apkAppPath=src/test/java/apps/sampleGetir.apk -> It stores application path. 
 3. deviceName=androidEmulator -> It is android emulator name.
 4. platformName=android -> It is android emulator platform name.
+
+- "bug-reports" file stores details for the bugs.
