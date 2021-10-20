@@ -13,7 +13,7 @@ public class BabyCareScreen {
         PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
     }
 
-    @AndroidFindBy(className = "android.widget.ImageView")
-    public List<AndroidElement> allImages;
+    @AndroidFindBy(xpath = "//android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[3]/android.widget.LinearLayout/android.widget.ImageView")
+    public AndroidElement thirdProduct;
 
 }

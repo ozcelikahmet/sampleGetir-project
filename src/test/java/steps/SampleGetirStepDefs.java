@@ -58,7 +58,7 @@ public class SampleGetirStepDefs {
 
     @And("^user taps on third product$")
     public void userTapsOnThirdProduct() {
-        CommonUtils.tapByElement(androidDriver, babyCareScreen.allImages.get(3));
+        CommonUtils.tapByElement(androidDriver, babyCareScreen.thirdProduct);
     }
 
     @And("^user validates product price is \"([^\"]*)\"$")
