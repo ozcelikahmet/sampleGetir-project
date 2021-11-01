@@ -27,3 +27,11 @@ Feature: Validate functionalities for Sample Getir app
     And user validates product price is "$1,98"
     And user goes back
     Then user validates "BABY CARE" is displayed
+
+  @RandomSelect
+  Scenario: Random select Category and Product
+    And user taps on random category
+    And user taps on random product
+
+
+

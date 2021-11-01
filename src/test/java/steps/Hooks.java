@@ -21,7 +21,7 @@ public class Hooks {
     public static BabyCareScreen babyCareScreen;
 
     @Before
-    public void openBrowser() throws MalformedURLException {
+    public static void openApp() throws MalformedURLException {
         androidDriver = DesiredCapabilitiesUtils.setupAndroidDesiredCapabilities();
         waterScreen = new WaterScreen(androidDriver);
         firstProductScreen = new FirstProductScreen(androidDriver);
@@ -33,7 +33,7 @@ public class Hooks {
 
 
     @After
-    public void tearDown() {
+    public static void tearDown() {
         androidDriver.quit();
     }
 }

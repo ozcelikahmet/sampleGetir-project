@@ -11,6 +11,9 @@ import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.Dimension;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
+import org.openqa.selenium.NotFoundException;
+
+import java.util.Random;
 
 public class CommonUtils {
     static int waitOptionsDuration = Integer.parseInt(ConfigReader.getProperty("waitOptionsDuration"));
@@ -23,14 +26,27 @@ public class CommonUtils {
         driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector())" + ".scrollIntoView(text(\"" + visibleText + "\"))").click();
     }
 
+    public static void horizontalSwipeByTextAndClick(AndroidDriver<AndroidElement> driver, String visibleText) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).setAsHorizontalList()" + ".scrollIntoView(text(\"" + visibleText + "\"))").click();
+    }
+
+    public static void horizontalSwipeByText(AndroidDriver<AndroidElement> driver, String visibleText) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).setAsHorizontalList()" + ".scrollIntoView(text(\"" + visibleText + "\"))");
+    }
+
+    public static void verticalSwipeByTextAndClick(AndroidDriver<AndroidElement> driver, String visibleText) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).setAsVerticalList()" + ".scrollIntoView(text(\"" + visibleText + "\"))").click();
+    }
+
     //Tap by coordinates
-    public static void tapByCoordinates (AndroidDriver<AndroidElement> driver,int x,  int y) {
+    public static void tapByCoordinates(AndroidDriver<AndroidElement> driver, int x, int y) {
         touchAction(driver)
-                .tap(point(x,y))
+                .tap(point(x, y))
                 .waitAction(waitOptions(ofSeconds(waitOptionsDuration))).perform();
     }
+
     //Press by element
-    public static void pressByElement (AndroidDriver<AndroidElement> driver,AndroidElement element, long seconds) {
+    public static void pressByElement(AndroidDriver<AndroidElement> driver, AndroidElement element, long seconds) {
         touchAction(driver)
                 .press(element(element))
                 .waitAction(waitOptions(ofSeconds(seconds)))
@@ -43,15 +59,16 @@ public class CommonUtils {
     }
 
     //Press by coordinates
-    public static void pressByCoordinates (AndroidDriver<AndroidElement> driver,int x, int y, long seconds) {
+    public static void pressByCoordinates(AndroidDriver<AndroidElement> driver, int x, int y, long seconds) {
         new TouchAction(driver)
-                .press(point(x,y))
+                .press(point(x, y))
                 .waitAction(waitOptions(ofSeconds(seconds)))
                 .release()
                 .perform();
     }
+
     //Horizontal Swipe by percentages
-    public static void horizontalSwipeByPercentage (AndroidDriver<AndroidElement> driver,double startPercentage, double endPercentage, double anchorPercentage) {
+    public static void horizontalSwipeByPercentage(AndroidDriver<AndroidElement> driver, double startPercentage, double endPercentage, double anchorPercentage) {
         Dimension size = driver.manage().window().getSize();
         int anchor = (int) (size.height * anchorPercentage);
         int startPoint = (int) (size.width * startPercentage);
@@ -62,8 +79,9 @@ public class CommonUtils {
                 .moveTo(point(endPoint, anchor))
                 .release().perform();
     }
+
     //Vertical Swipe by percentages
-    public static void verticalSwipeByPercentages(AndroidDriver<AndroidElement> driver,double startPercentage, double endPercentage, double anchorPercentage) {
+    public static void verticalSwipeByPercentages(AndroidDriver<AndroidElement> driver, double startPercentage, double endPercentage, double anchorPercentage) {
         Dimension size = driver.manage().window().getSize();
         int anchor = (int) (size.width * anchorPercentage);
         int startPoint = (int) (size.height * startPercentage);
@@ -77,5 +95,9 @@ public class CommonUtils {
 
     public static TouchAction touchAction(AndroidDriver<AndroidElement> driver) {
         return new TouchAction(driver);
+    }
+
+    public static int randomNumber(int min, int max) {
+        return new Random().nextInt(max + min) + min;
     }
 }
